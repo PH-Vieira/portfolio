@@ -679,15 +679,18 @@ onBeforeUnmount(() => {
             >
               Vamos colaborar em um projeto que impulsione seus objetivos. Compartilhe sua visão e juntos construiremos algo extraordinário.
             </p>
-            <button
-              class="rounded-full bg-gradient-to-r from-halloween-orange via-halloween-purple to-halloween-green px-8 py-4 text-base font-semibold text-black shadow-xl shadow-halloween-orange/30 transition hover:-translate-y-1"
+            <a
+              href="https://wa.me/5516999934112?text=Olá%20Pedro,%20gostaria%20de%20agendar%20uma%20conversa%20sobre%20um%20projeto."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block rounded-full bg-gradient-to-r from-halloween-orange via-halloween-purple to-halloween-green px-8 py-4 text-base font-semibold text-black shadow-xl shadow-halloween-orange/30 transition hover:-translate-y-1"
               data-animate="scale-pop"
               data-animate-delay="0.1"
               data-animate-scrub="0.8"
               data-animate-end="bottom 55%"
             >
               Agendar conversa
-            </button>
+            </a>
           </div>
           <div class="space-y-6">
             <div
