@@ -102,9 +102,16 @@ const skillGroups = [
 
 const timeline = [
   {
+    role: 'Analista NOC',
+    company: 'SONDA • Embraer',
+    period: 'mai/2025 - Atual',
+    description:
+      'Monitoramento 24/7 da infraestrutura crítica da Embraer, respondendo a incidentes e coordenando ações corretivas junto às equipes internas.',
+  },
+  {
     role: 'Mecânico Eletricista',
     company: 'Embraer',
-    period: 'mai/2024 - Atual',
+    period: 'mai/2024 - abr/2025',
     description:
       'Montagem e testes em aeronaves executivas e militares, garantindo qualidade e conformidade em sistemas elétricos.',
   },
@@ -320,7 +327,7 @@ onBeforeUnmount(() => {
       data-parallax="24"
       data-parallax-target="#projects"
     ></span>
-    <header class="sticky top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur">
+    <header class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur">
       <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <div class="flex items-center gap-3">
           <span class="js-hero-badge inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.2em] text-halloween-orange">
@@ -348,8 +355,8 @@ onBeforeUnmount(() => {
       </nav>
     </header>
 
-    <main class="mx-auto max-w-6xl px-6">
-      <section id="hero" class="js-hero pt-24 pb-32">
+    <main class="mx-auto max-w-6xl px-6 pt-24">
+      <section id="hero" class="js-hero pt-16 pb-32">
         <div class="grid gap-16 lg:grid-cols-[minmax(0,1fr)_360px]">
           <div class="space-y-6">
             <h1 class="js-hero-title text-4xl font-bold text-white md:text-5xl lg:text-6xl">
