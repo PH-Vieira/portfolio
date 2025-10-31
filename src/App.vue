@@ -327,7 +327,35 @@ onBeforeUnmount(() => {
       data-parallax="24"
       data-parallax-target="#projects"
     ></span>
-    <header class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur">
+    <!-- Decorative elements on the sides -->
+    <span
+      aria-hidden="true"
+      class="pointer-events-none absolute left-8 top-1/3 h-16 w-16 rounded-full bg-halloween-green/20 blur-xl"
+      data-parallax="-5"
+      data-animate="fade-up"
+      data-animate-delay="0.5"
+    ></span>
+    <span
+      aria-hidden="true"
+      class="pointer-events-none absolute left-16 bottom-1/3 h-24 w-24 rounded-lg bg-halloween-purple/15 blur-2xl rotate-45"
+      data-parallax="8"
+      data-animate="scale-pop"
+      data-animate-delay="0.7"
+    ></span>
+    <span
+      aria-hidden="true"
+      class="pointer-events-none absolute right-8 top-2/3 h-20 w-20 rounded-full bg-halloween-orange/25 blur-2xl"
+      data-parallax="12"
+      data-animate="fade-up"
+      data-animate-delay="0.6"
+    ></span>
+    <span
+      aria-hidden="true"
+      class="pointer-events-none absolute right-12 bottom-1/4 h-32 w-32 rounded-full bg-halloween-purple/10 blur-3xl"
+      data-parallax="-15"
+      data-animate="drift-in"
+      data-animate-delay="0.8"
+    ></span>
       <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <div class="flex items-center gap-3">
           <span class="js-hero-badge inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.2em] text-halloween-orange">
