@@ -67,21 +67,21 @@ const projects = [
     description:
       'Plataforma interativa e intuitiva para planejamento educacional, otimizando o tempo dos professores com ferramentas avançadas de organização e acompanhamento de aulas.',
     stack: ['React.js', 'Node.js', 'PostgreSQL'],
-    link: '#',
+    link: 'https://aula-planner-charm.lovable.app/',
   },
   {
-    title: 'Facilitador de Documentos ABNT',
+    title: 'Creators Hub',
     description:
-      'Ferramenta inteligente que simplifica a criação de documentos acadêmicos, integrando LaTeX para formatação precisa e automatizada conforme normas ABNT.',
-    stack: ['Vue.js', 'LaTeX', 'Node.js'],
-    link: '#',
+      'Comunidade online para criadores de conteúdo, oferecendo recursos de colaboração, networking e crescimento profissional em um ambiente dinâmico e inspirador.',
+    stack: ['Vue.js', 'Supabase', 'Tailwind CSS'],
+    link: 'https://creators-hub-xi.vercel.app/',
   },
   {
     title: 'Sistema ERP em Construção',
     description:
       'Solução completa de gestão empresarial, integrando módulos de vendas, estoque e finanças para otimizar operações e tomada de decisões estratégicas.',
     stack: ['Vue.js', 'Node.js', 'PostgreSQL'],
-    link: '#',
+    link: 'https://creators-hub-xi.vercel.app/',
   },
 ];
 
