@@ -356,6 +356,7 @@ onBeforeUnmount(() => {
       data-animate="drift-in"
       data-animate-delay="0.8"
     ></span>
+    <header class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur">
       <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <div class="flex items-center gap-3">
           <span class="js-hero-badge inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.2em] text-halloween-orange">
