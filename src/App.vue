@@ -81,7 +81,7 @@ const projects = [
     description:
       'Solução completa de gestão empresarial, integrando módulos de vendas, estoque e finanças para otimizar operações e tomada de decisões estratégicas.',
     stack: ['Vue.js', 'Node.js', 'PostgreSQL'],
-    link: 'https://creators-hub-xi.vercel.app/',
+    link: 'https://monumental-erp.vercel.app/',
   },
 ];
 
