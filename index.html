@@ -307,7 +307,10 @@
       50%      { transform: translate(18px,-18px) scale(1.06); }
     }
 
-    .hero-content { position: relative; z-index: 1; padding-top: 100px; }
+    .hero-content {
+      position: relative; z-index: 1;
+      padding-top: clamp(88px, 14vw, 100px);
+    }
 
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
@@ -360,31 +363,66 @@
     }
     @keyframes fadeIn { to { opacity: 1; } }
 
-    /* Avatar */
+    /* Avatar — visível em todas as larguras (recrutadores em mobile) */
     .hero-avatar-wrap {
-      display: none; position: relative;
+      position: relative; z-index: 1;
+      display: flex; justify-content: center;
+      margin-bottom: var(--s2);
+      animation: fadeIn .8s ease .35s forwards;
+      opacity: 0;
     }
-    @media (min-width: 1024px) { .hero-avatar-wrap { display: block; } }
 
     .hero-avatar-ring-outer {
-      position: relative; width: 370px; height: 370px;
-      animation: fadeIn 1s ease .5s forwards; opacity: 0;
+      position: relative;
+      width: clamp(132px, 36vw, 200px);
+      height: clamp(132px, 36vw, 200px);
+      flex-shrink: 0;
     }
     .hero-avatar-inner {
-      position: relative; width: 370px; height: 370px;
+      position: relative;
+      width: 100%; height: 100%;
       border-radius: 50%; overflow: hidden;
       background: var(--primary-lt);
-      border: 4px solid rgba(0,200,150,.25);
+      border: 3px solid rgba(0,200,150,.35);
+      box-shadow: 0 12px 40px rgba(0,0,0,.25);
     }
-    .hero-avatar-inner img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-avatar-inner img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+
+    @media (min-width: 640px) {
+      .hero-avatar-ring-outer {
+        width: clamp(168px, 26vw, 240px);
+        height: clamp(168px, 26vw, 240px);
+      }
+      .hero-avatar-inner { border-width: 4px; }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-avatar-wrap {
+        display: block;
+        grid-column: 2; grid-row: 1;
+        margin-bottom: 0;
+        animation: fadeIn 1s ease .5s forwards;
+        opacity: 0;
+      }
+      .hero-avatar-ring-outer {
+        width: 370px; height: 370px;
+      }
+      .hero-content {
+        grid-column: 1; grid-row: 1;
+        padding-top: 100px;
+      }
+    }
 
     /* Stats */
     .hero-stats {
-      display: flex; gap: var(--s5);
+      display: flex; flex-wrap: wrap; gap: var(--s3) var(--s5);
       animation: fadeIn .8s ease 1s forwards; opacity: 0;
     }
+    @media (min-width: 480px) {
+      .hero-stats { flex-wrap: nowrap; gap: var(--s5); }
+    }
     .hero-stat-val {
-      font-family: var(--f-display); font-size: 2rem;
+      font-family: var(--f-display); font-size: clamp(1.45rem, 4.5vw, 2rem);
       font-weight: 800; color: #fff; line-height: 1;
     }
     .hero-stat-val em { color: var(--accent); font-style: normal; }
@@ -393,9 +431,22 @@
 
     .hero-grid {
       display: grid; grid-template-columns: 1fr;
-      gap: var(--s8); align-items: center;
+      gap: var(--s4); align-items: center;
+      padding-bottom: var(--s10);
     }
-    @media (min-width: 1024px) { .hero-grid { grid-template-columns: 1fr auto; } }
+    @media (min-width: 768px) { .hero-grid { gap: var(--s6); } }
+    @media (min-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr auto;
+        gap: var(--s8);
+        padding-bottom: 0;
+      }
+    }
+
+    @media (max-width: 1023px) {
+      #hero { min-height: auto; padding-bottom: var(--s8); }
+      .hero-scroll { display: none; }
+    }
 
     /* Scroll cue */
     .hero-scroll {
@@ -427,6 +478,29 @@
       display: grid; grid-template-columns: 1fr; gap: var(--s8);
     }
     @media (min-width: 768px) { .about-grid { grid-template-columns: 1fr 1fr; gap: var(--s12); } }
+
+    .about-profile {
+      display: flex; align-items: center; gap: var(--s3);
+      margin-bottom: var(--s4);
+      padding: var(--s3);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+    }
+    .about-profile-img {
+      width: 72px; height: 72px; flex-shrink: 0;
+      border-radius: 50%; overflow: hidden;
+      border: 2px solid var(--accent);
+    }
+    .about-profile-img img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center top;
+    }
+    .about-profile-name {
+      font-family: var(--f-display); font-size: 1.05rem;
+      font-weight: 700; color: var(--primary); margin-bottom: 2px;
+    }
+    .about-profile-role { font-size: .85rem; color: var(--txt-2); }
+    @media (min-width: 1024px) { .about-profile { display: none; } }
 
     .about-text p {
       color: var(--txt-2); line-height: 1.82;
@@ -508,6 +582,8 @@
         max-width: 920px;
         margin-inline: auto;
       }
+      /* Card expandido usa a largura útil do container (GIF maior) */
+      .projects-grid:has(.project-card.expanded) { max-width: none; }
     }
 
     /* Card */
@@ -624,8 +700,9 @@
     .proj-details {
       display: none;
       border-top: 1px solid var(--border);
-      padding: var(--s5); background: var(--bg);
+      padding: var(--s3); background: var(--bg);
     }
+    @media (min-width: 768px) { .proj-details { padding: var(--s4); } }
     .project-card.expanded .proj-details {
       display: block;
       animation: expandIn .32s ease forwards;
@@ -635,31 +712,33 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .details-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--s4);
-      align-items: start;
+    .details-layout {
+      display: flex; flex-direction: column;
+      gap: var(--s3); min-width: 0;
     }
-    @media (min-width: 900px) {
-      .details-grid {
-        grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
-        gap: var(--s5);
+
+    /* GIF em destaque — largura total do card expandido */
+    .details-preview { min-width: 0; }
+    .details-preview .gif-ph {
+      width: 100%;
+      min-height: clamp(200px, 52vw, 320px);
+      max-height: min(58vh, 560px);
+      height: auto;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--r-md);
+    }
+    @media (min-width: 768px) {
+      .details-preview .gif-ph {
+        min-height: 280px;
+        aspect-ratio: 16 / 9;
       }
     }
 
-    .details-aside {
-      display: flex; flex-direction: column; gap: var(--s3);
-      align-self: start; width: 100%; max-width: 340px;
-      min-width: 0;
-    }
-    @media (max-width: 899px) { .details-aside { max-width: none; } }
-
     /* GIF placeholder shimmer */
     .gif-ph {
-      width: 100%; height: 168px; max-height: 42vw;
+      width: 100%;
       border-radius: var(--r-md);
-      background: var(--bg-alt); border: 1px solid var(--border);
+      background: var(--primary-lt); border: 1px solid var(--border);
       display: flex; align-items: center; justify-content: center;
       position: relative; overflow: hidden;
       flex-shrink: 0;
@@ -683,19 +762,23 @@
     }
     .gif-ph.has-preview::before { display: none; }
     .gif-ph.has-preview img {
-      width: 100%; height: 100%; object-fit: cover; object-position: center top;
-      display: block;
+      width: 100%; height: 100%;
+      object-fit: contain; object-position: center center;
+      display: block; background: var(--primary-lt);
     }
 
-    /* Metrics */
-    .details-aside .d-section {
-      margin-bottom: 0; min-width: 0; overflow: hidden;
+    .details-metrics { min-width: 0; }
+    .details-metrics .d-section {
+      margin-bottom: 0; padding: var(--s2) var(--s3);
     }
+    .details-metrics .d-section-hd { margin-bottom: 8px; }
+
+    /* Metrics */
     .metrics-row {
       display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: var(--s2); min-width: 0;
     }
-    @media (max-width: 520px) {
+    @media (max-width: 640px) {
       .metrics-row { grid-template-columns: minmax(0, 1fr); }
     }
     .metric-card {
@@ -713,27 +796,18 @@
       line-height: 1.35; overflow-wrap: anywhere;
     }
 
-    /* Métricas na coluna lateral: empilhadas, valor + rótulo na mesma linha */
-    .details-aside .metrics-row {
-      display: flex; flex-direction: column; gap: 8px;
+    /* Detail section cards — grade compacta */
+    .detail-sections {
+      display: grid; grid-template-columns: 1fr;
+      gap: var(--s2); min-width: 0;
     }
-    .details-aside .metric-card {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 10px; padding: 10px 14px; text-align: left;
+    @media (min-width: 720px) {
+      .detail-sections { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
-    .details-aside .metric-val {
-      font-size: .92rem; flex-shrink: 0; max-width: 42%;
-    }
-    .details-aside .metric-lbl {
-      font-size: .72rem; margin-top: 0; text-align: right;
-      flex: 1; min-width: 0;
-    }
-
-    /* Detail section cards */
-    .detail-sections { display: flex; flex-direction: column; gap: var(--s2); }
     .d-section {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--r-md); padding: var(--s2) var(--s3);
+      min-width: 0;
     }
     .d-section-hd {
       display: flex; align-items: center; gap: 8px;
@@ -978,6 +1052,19 @@
   <div class="container">
     <div class="hero-grid">
 
+      <!-- Avatar (primeiro no mobile; à direita no desktop) -->
+      <div class="hero-avatar-wrap">
+        <div class="hero-avatar-ring-outer">
+          <div class="hero-avatar-inner">
+            <img
+              src="assets/profile.png"
+              alt="Foto de Pedro Henrique Vieira"
+              width="370" height="370" loading="eager" fetchpriority="high"
+            >
+          </div>
+        </div>
+      </div>
+
       <!-- Text -->
       <div class="hero-content">
         <h1 class="hero-title" aria-label="Pedro Henrique Vieira">
@@ -1019,19 +1106,6 @@
         </div>
       </div>
 
-      <!-- Avatar -->
-      <div class="hero-avatar-wrap" aria-hidden="true">
-        <div class="hero-avatar-ring-outer">
-          <div class="hero-avatar-inner">
-            <img
-              src="assets/profile.png"
-              alt="Foto de Pedro Henrique Vieira"
-              width="370" height="370" loading="eager"
-            >
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 
@@ -1052,6 +1126,16 @@
 
       <!-- Text -->
       <div class="about-text reveal">
+        <div class="about-profile" aria-label="Perfil">
+          <div class="about-profile-img">
+            <img src="assets/profile.png" alt="" width="72" height="72" loading="lazy" decoding="async">
+          </div>
+          <div>
+            <div class="about-profile-name">Pedro Henrique Vieira</div>
+            <div class="about-profile-role">Desenvolvedor Full Stack · Matão/SP</div>
+          </div>
+        </div>
+
         <h2 class="section-title" style="margin-bottom:var(--s5);">Quem sou eu</h2>
 
         <p class="text-body-lg" style="font-size:1.1rem;">
@@ -1554,17 +1638,19 @@ function renderProjects() {
 
       <!-- Layer 2: expanded details -->
       <div class="proj-details" id="det-${p.id}" role="region" aria-label="Detalhes de ${p.name}">
-        <div class="details-grid">
-          <div class="details-aside">
+        <div class="details-layout">
+          <div class="details-preview">
             ${p.preview
               ? `<div class="gif-ph has-preview" role="img" aria-label="Demonstração de ${p.name}">
-                  <img src="${p.preview}" alt="Demonstração do ${p.name}" loading="lazy" width="600" height="340">
+                  <img src="${p.preview}" alt="Demonstração do ${p.name}" loading="lazy" width="960" height="540">
                 </div>`
               : `<div class="gif-ph" role="img" aria-label="Demonstração do projeto ${p.name}">
                   <div class="gif-label">[ GIF do projeto em uso ]</div>
                 </div>`}
-            ${renderMetrics(p.details.metrics)}
           </div>
+          ${p.details.metrics?.length
+            ? `<div class="details-metrics">${renderMetrics(p.details.metrics)}</div>`
+            : ''}
           <div class="detail-sections">
             ${renderDetailSections(p.details)}
           </div>
